@@ -2,7 +2,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AcademicLevel, Theory, Report, ComparisonResult, Language, ResearchType } from "../types";
 
-const apiKey = process.env.API_KEY;
+const apiKey = process.env.VITE_GEMINI_API_KEY;
 const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 const SUGGESTION_MODEL = "gemini-3-flash-preview";
 const REPORT_MODEL = "gemini-3-pro-preview";
