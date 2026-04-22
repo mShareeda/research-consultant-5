@@ -25,6 +25,11 @@ const Loading: React.FC<LoadingProps> = ({ message, lang }) => {
             <p className="text-slate-600 font-medium leading-relaxed">
               {message || t.loadingWait}
             </p>
+            <div className="flex items-center justify-center gap-2 pt-2">
+                <span className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse"></span>
+                <span className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse delay-100"></span>
+                <span className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse delay-200"></span>
+            </div>
         </div>
       </div>
     </div>

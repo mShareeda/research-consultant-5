@@ -61,5 +61,6 @@ export interface AppState {
   comparisonResult: ComparisonResult | null;
   finalReport: Report | null;
   isLoading: boolean;
+  loadingMessage: string;
   error: string | null;
 }

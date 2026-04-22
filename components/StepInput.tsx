@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { AcademicLevel, Language, ResearchType } from "../types";
-import { ArrowLeft, ArrowRight, Sparkles, BookOpen, GraduationCap, ScrollText, Users, TrendingUp, Cpu, Brain, Briefcase, Gavel, Tv, MoreHorizontal, Globe, BarChart3, Search, Languages } from "lucide-react";
+import { Sparkles, BookOpen, GraduationCap, ScrollText, Users, TrendingUp, Cpu, Brain, Briefcase, Gavel, Tv, MoreHorizontal, Globe, BarChart3, Search, Languages } from "lucide-react";
 import { translations } from "../utils/translations";
 
 interface StepInputProps {
@@ -72,7 +72,7 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
         <form onSubmit={handleSubmit} className="space-y-8 md:space-y-10">
           {/* Academic Level Section */}
           <div className="space-y-4">
-            <label className={`flex items-center gap-2 font-bold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
+            <label className={`block font-bold text-slate-800 text-sm uppercase tracking-wide ${lang === 'ar' ? 'mr-1 border-r-4 pr-4' : 'ml-1 border-l-4 pl-4'} border-indigo-600`}>
               {t.levelLabel}
             </label>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
@@ -84,24 +84,21 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
                     key={lvl.id}
                     type="button"
                     onClick={() => setLevel(lvl.id)}
-                    className={`relative p-3.5 md:p-4 rounded-2xl transition-all duration-300 flex flex-row md:flex-col items-center md:justify-center gap-4 md:gap-3 group border-2 ${
+                    className={`relative p-3.5 md:p-4 rounded-2xl transition-all duration-300 flex flex-col items-center justify-center gap-2 group border-2 ${
                       isSelected
                         ? "bg-primary-light border-indigo-600 shadow-card"
                         : "bg-white border-slate-100 hover:border-indigo-200 hover:bg-slate-50"
                     }`}
                   >
-                    <div className={`p-2.5 md:p-3 rounded-xl transition-colors flex-shrink-0 ${isSelected ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-400 group-hover:text-indigo-500 group-hover:bg-indigo-50"}`}>
+                    <div className={`p-2.5 md:p-3 rounded-xl transition-colors ${isSelected ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-400 group-hover:text-indigo-500 group-hover:bg-indigo-50"}`}>
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
-                    <div className="text-left md:text-center flex-grow md:flex-grow-0">
+                    <div className="text-center">
                       <div className={`font-bold text-sm md:text-base ${isSelected ? "text-indigo-900" : "text-slate-600"}`}>
                         {lvl.label}
                       </div>
                       <div className="text-[11px] md:text-sm font-medium text-slate-400 md:mt-1">{lvl.desc}</div>
                     </div>
-                    {isSelected && (
-                        <div className={`absolute top-2.5 right-2.5 md:top-3 md:right-3 w-1.5 h-1.5 bg-indigo-600 rounded-full`}></div>
-                    )}
                   </button>
                 );
               })}
@@ -110,7 +107,7 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
 
           {/* Research Type Section */}
           <div className="space-y-4">
-            <label className={`flex items-center gap-2 font-bold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
+            <label className={`block font-bold text-slate-800 text-sm uppercase tracking-wide ${lang === 'ar' ? 'mr-1 border-r-4 pr-4' : 'ml-1 border-l-4 pl-4'} border-indigo-600`}>
               {t.typeLabel}
             </label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
@@ -148,11 +145,11 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
 
           {/* Research Foundation Section */}
           <div className="space-y-4">
-            <label className={`block font-bold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
+            <label className={`block font-bold text-slate-800 text-sm uppercase tracking-wide ${lang === 'ar' ? 'mr-1 border-r-4 pr-4' : 'ml-1 border-l-4 pl-4'} border-indigo-600`}>
               {t.foundationLabel}
-              <span className={`text-xs md:text-sm font-medium text-slate-500 ${lang === 'ar' ? 'mr-2' : 'ml-2'}`}>{t.foundationSubLabel}</span>
+              <span className={`text-xs md:text-sm font-medium text-slate-500 block mt-1`}>{t.foundationSubLabel}</span>
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
                 {foundations.map((foun) => {
                     const Icon = foun.icon;
                     const isSelected = foundation === foun.id;
@@ -170,7 +167,7 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
                             <div className={`p-2 rounded-lg transition-colors ${isSelected ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600"}`}>
                               <Icon className="w-5 h-5 md:w-6 md:h-6" />
                             </div>
-                            <span className={`font-bold text-xs md:text-sm text-center leading-tight transition-colors ${isSelected ? "text-emerald-900" : ""}`}>
+                            <span className={`font-bold text-xs md:text-sm text-center leading-tight transition-colors ${isSelected ? "text-indigo-900" : ""}`}>
                                 {foun.label}
                             </span>
                         </button>
@@ -181,21 +178,22 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
 
           {/* Research Title Section */}
           <div className="space-y-4">
-            <label className={`block font-bold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
+            <label className={`block font-bold text-slate-800 text-sm uppercase tracking-wide ${lang === 'ar' ? 'mr-1 border-r-4 pr-4' : 'ml-1 border-l-4 pl-4'} border-indigo-600`}>
               {t.titleLabel}
             </label>
             <div className="relative group">
                 <textarea
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value.substring(0, 500))}
+                    maxLength={500}
                     className={`w-full px-4 md:px-6 py-4 md:py-5 rounded-2xl bg-slate-50 border-2 border-slate-100 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all min-h-[140px] md:min-h-[160px] text-sm md:text-base font-medium leading-relaxed md:leading-loose resize-none ${lang === 'ar' ? 'text-right' : 'text-left'}`}
                     placeholder={t.titlePlaceholder}
                     required
                 />
-                <div className={`absolute bottom-3 ${lang === 'ar' ? 'left-3' : 'right-3'} font-black px-1.5 py-0.5 rounded-lg border transition-all text-[8px] md:text-[9px] uppercase tracking-tighter opacity-80 ${
-                  title.length > 10 ? "text-emerald-600 bg-emerald-50 border-emerald-200" : "text-slate-400 bg-white/80 border-slate-100"
+                <div className={`absolute bottom-3 ${lang === 'ar' ? 'left-3' : 'right-3'} font-black px-2 py-1 rounded-lg border transition-all text-[8px] md:text-[9px] uppercase tracking-tighter ${
+                  title.length < 10 ? "text-slate-400 bg-white/80 border-slate-100" : title.length >= 400 ? "text-amber-600 bg-amber-50 border-amber-200" : "text-emerald-600 bg-emerald-50 border-emerald-200"
                 }`}>
-                    {title.length} {t.charCount}
+                    {title.length} / 500 {t.charCount}
                 </div>
             </div>
           </div>
@@ -209,12 +207,13 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
                 ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-200 hover:shadow-indigo-300"
                 : "bg-slate-100 text-slate-400 cursor-not-allowed"
               }`}
+            title={title.trim().length < 10 ? "Research title must be at least 10 characters" : !foundation ? "Please select a research foundation" : ""}
           >
             <span className="relative z-10 text-sm md:text-base">{isSubmitting ? t.submittingBtn : t.submitBtn}</span>
             {title.trim().length >= 10 && foundation && !isSubmitting ? (
                <Sparkles className="w-5 h-5 md:w-6 md:h-6 group-hover:animate-pulse relative z-10" />
             ) : (
-                lang === 'ar' ? <ArrowLeft className="w-5 h-5 md:w-6 md:h-6 relative z-10" /> : <ArrowRight className="w-5 h-5 md:w-6 md:h-6 relative z-10" />
+                <span className="text-slate-300">•••</span>
             )}
           </button>
         </form>

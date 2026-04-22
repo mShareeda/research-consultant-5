@@ -117,11 +117,11 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 items-stretch">
-        {theories.map((theory, idx) => {
+        {theories.map((theory) => {
           const isAdopted = !!selectedTheories.find(t => t.name === theory.name);
           return (
             <div
-                key={idx}
+                key={theory.name}
                 className={`rounded-card p-1.5 md:p-2 shadow-card hover:shadow-card-hover border transition-all duration-300 flex flex-col group h-full relative overflow-hidden
                 ${isAdopted
                     ? "bg-primary-light border-indigo-600"
@@ -319,7 +319,7 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
                     <X className="w-6 h-6" />
                 </button>
                 <div className="p-5 md:p-10 flex-grow overflow-y-auto">
-                    <div className="flex items-center gap-3 mb-6 md:mb-8 border-b border-slate-100 pb-5 md:pb-6 pr-12 md:pr-0">
+                    <div className={`flex items-center gap-3 mb-6 md:mb-8 border-b border-slate-100 pb-5 md:pb-6 ${lang === 'ar' ? 'pl-12 md:pl-0' : 'pr-12 md:pr-0'}`}>
                         <div className="bg-indigo-600 p-2.5 md:p-3 rounded-xl text-white shadow-lg flex-shrink-0">
                             <Scale className="w-6 h-6 md:w-8 md:h-8" />
                         </div>
@@ -346,7 +346,7 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
                              <button onClick={handleCompare} className="bg-rose-600 hover:bg-rose-700 text-white px-10 py-3.5 rounded-2xl font-black shadow-lg transition-all text-sm">{t.retryBtn}</button>
                         </div>
                     ) : comparisonResult ? (
-                        <div className="space-y-12 md:space-y-16">
+                        <div className="space-y-12 md:space-y-16 animate-in fade-in duration-300">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
                                 <div className="bg-emerald-50/30 p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] border border-emerald-100/50 shadow-sm relative overflow-hidden flex flex-col">
                                     <h4 className="font-black text-emerald-800 mb-4 flex items-center gap-3 relative z-10 text-sm md:text-base">

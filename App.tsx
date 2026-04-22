@@ -24,6 +24,7 @@ const initialState: AppState = {
   comparisonResult: null,
   finalReport: null,
   isLoading: false,
+  loadingMessage: "",
   error: null,
 };
 
@@ -47,20 +48,21 @@ const App: React.FC = () => {
 
   const handleInputSubmit = async (title: string, level: AcademicLevel, type: ResearchType, foundation: string) => {
     if (!state.language) return;
-    setState((prev) => ({ 
-      ...prev, 
-      isLoading: true, 
-      error: null, 
-      researchTitle: title, 
-      academicLevel: level, 
+    setState((prev) => ({
+      ...prev,
+      isLoading: true,
+      loadingMessage: state.language === 'ar' ? "جاري تحليل تركيز بحثك واقتراح النظريات العلمية المناسبة..." : "Analyzing your research focus and suggesting theories...",
+      error: null,
+      researchTitle: title,
+      academicLevel: level,
       researchType: type,
-      researchFoundation: foundation 
+      researchFoundation: foundation
     }));
     try {
       const theories = await getTheorySuggestions(title, level, type, foundation, state.language);
-      setState((prev) => ({ ...prev, isLoading: false, suggestedTheories: theories, step: 2 }));
+      setState((prev) => ({ ...prev, isLoading: false, loadingMessage: "", suggestedTheories: theories, step: 2 }));
     } catch (error: any) {
-      setState((prev) => ({ ...prev, isLoading: false, error: error.message }));
+      setState((prev) => ({ ...prev, isLoading: false, loadingMessage: "", error: error.message }));
     }
   };
 
@@ -74,12 +76,12 @@ const App: React.FC = () => {
 
   const handleProceedToHypotheses = async () => {
       if (!state.language || state.selectedTheories.length === 0) return;
-      setState(prev => ({ ...prev, isLoading: true, error: null }));
+      setState(prev => ({ ...prev, isLoading: true, loadingMessage: prev.language === 'ar' ? "جاري توليد الفرضيات من الأطر النظرية المختارة..." : "Generating hypotheses from selected frameworks...", error: null }));
       try {
           const hyps = await getTheoriesHypotheses(state.selectedTheories, state.language, state.researchType);
-          setState(prev => ({ ...prev, isLoading: false, theoriesHypotheses: hyps, step: 3 }));
+          setState(prev => ({ ...prev, isLoading: false, loadingMessage: "", theoriesHypotheses: hyps, step: 3 }));
       } catch (error: any) {
-          setState(prev => ({ ...prev, isLoading: false, error: error.message }));
+          setState(prev => ({ ...prev, isLoading: false, loadingMessage: "", error: error.message }));
       }
   };
 
@@ -106,19 +108,19 @@ const App: React.FC = () => {
 
   const handleGenerateReport = async () => {
       if (!state.language) return;
-      setState(prev => ({ ...prev, isLoading: true, error: null }));
+      setState(prev => ({ ...prev, isLoading: true, loadingMessage: prev.language === 'ar' ? "جاري بناء تقرير المواءمة الشامل..." : "Building your comprehensive research report...", error: null }));
       try {
           const report = await getFinalReport(
-              state.researchTitle, 
-              state.academicLevel, 
+              state.researchTitle,
+              state.academicLevel,
               state.researchType,
-              state.selectedTheories, 
-              state.userSelectedHypotheses, 
+              state.selectedTheories,
+              state.userSelectedHypotheses,
               state.language
           );
-          setState(prev => ({ ...prev, isLoading: false, finalReport: report, step: 4 }));
+          setState(prev => ({ ...prev, isLoading: false, loadingMessage: "", finalReport: report, step: 4 }));
       } catch (error: any) {
-          setState(prev => ({ ...prev, isLoading: false, error: error.message }));
+          setState(prev => ({ ...prev, isLoading: false, loadingMessage: "", error: error.message }));
       }
   };
 
@@ -142,7 +144,7 @@ const App: React.FC = () => {
 
   return (
     <div className={`min-h-screen w-full pb-0 flex flex-col bg-surface ${state.language === 'ar' ? 'font-sans' : ''}`}>
-      {state.step !== 0 && <Header lang={state.language} />}
+      {state.step !== 0 && <Header lang={state.language} currentStep={state.step} />}
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow w-full mt-8">
         <main className="relative">
@@ -162,18 +164,21 @@ const App: React.FC = () => {
                             <img
                               src="https://drive.google.com/thumbnail?id=1uEEM3KvDl2vrTEF25p3HBvCOXQF3KsGW&sz=w1000"
                               alt="Logo"
-                              className="h-32 md:h-44 mx-auto object-contain drop-shadow-sm transition-transform hover:scale-105 duration-500"
+                              className="h-24 md:h-32 mx-auto object-contain drop-shadow-sm transition-transform hover:scale-105 duration-500"
                             />
                          </div>
 
-                         {/* Titles Second with increased spacing */}
-                         <div className="space-y-6">
+                         {/* Titles Second with descriptor */}
+                         <div className="space-y-4">
                             <h1 className="text-3xl md:text-5xl font-black text-ink tracking-tight leading-tight">
                                 نظام مواءمة النظرية الذكي
                             </h1>
-                            <h2 className="text-lg md:text-2xl font-bold text-slate-600 tracking-[0.15em] uppercase pt-2">
+                            <h2 className="text-lg md:text-2xl font-bold text-slate-600 tracking-[0.15em] uppercase">
                                 Smart Theory Alignment System
                             </h2>
+                            <p className="text-slate-500 font-display italic text-sm md:text-base">
+                              Your AI-powered academic theory alignment system
+                            </p>
                          </div>
                      </div>
 
@@ -189,26 +194,28 @@ const App: React.FC = () => {
                          <div className="grid grid-cols-2 gap-6">
                              <button
                                 onClick={() => selectLanguage('ar')}
-                                className="bg-white border-2 border-slate-100 hover:border-indigo-600 p-6 md:p-10 rounded-2xl shadow-sm hover:shadow-card transition-all duration-300 flex flex-col items-center justify-center active:scale-95"
+                                className="bg-white border-2 border-slate-100 hover:border-indigo-600 p-6 md:p-10 rounded-2xl shadow-sm hover:shadow-card transition-all duration-300 flex flex-col items-center justify-center active:scale-95 relative overflow-hidden group animate-in fade-in duration-400"
                              >
-                                 <span className="font-bold text-2xl md:text-3xl text-slate-800">العربية</span>
+                                 <span className="text-8xl opacity-5 font-display absolute inset-0 flex items-center justify-center group-hover:opacity-10 transition-opacity">ع</span>
+                                 <span className="font-bold text-2xl md:text-3xl text-slate-800 relative z-10">العربية</span>
                              </button>
 
                              <button
                                 onClick={() => selectLanguage('en')}
-                                className="bg-white border-2 border-slate-100 hover:border-indigo-600 p-6 md:p-10 rounded-2xl shadow-sm hover:shadow-card transition-all duration-300 flex flex-col items-center justify-center active:scale-95"
+                                className="bg-white border-2 border-slate-100 hover:border-indigo-600 p-6 md:p-10 rounded-2xl shadow-sm hover:shadow-card transition-all duration-300 flex flex-col items-center justify-center active:scale-95 relative overflow-hidden group animate-in fade-in duration-400"
                              >
-                                 <span className="font-bold text-2xl md:text-3xl text-slate-800">English</span>
+                                 <span className="text-8xl opacity-5 font-display absolute inset-0 flex items-center justify-center group-hover:opacity-10 transition-opacity">A</span>
+                                 <span className="font-bold text-2xl md:text-3xl text-slate-800 relative z-10">English</span>
                              </button>
                          </div>
                      </div>
                 </div>
             )}
 
-            {state.step === 1 && <StepInput onSubmit={handleInputSubmit} onBack={() => setState(prev => ({ ...prev, step: 0, error: null }))} lang={state.language!} />}
+            {state.step === 1 && <div key="step1" className="animate-in fade-in slide-in-from-bottom-2 duration-300"><StepInput onSubmit={handleInputSubmit} onBack={() => setState(prev => ({ ...prev, step: 0, error: null }))} lang={state.language!} /></div>}
 
             {state.step === 2 && (
-                <StepTheories 
+                <div key="step2" className="animate-in fade-in slide-in-from-bottom-2 duration-300"><StepTheories 
                     theories={state.suggestedTheories} 
                     selectedTheories={state.selectedTheories}
                     onToggleSelection={handleToggleTheory}
@@ -219,10 +226,11 @@ const App: React.FC = () => {
                     title={state.researchTitle}
                     lang={state.language!}
                 />
+                </div>
             )}
 
             {state.step === 3 && (
-                <StepHypothesesPicking 
+                <div key="step3" className="animate-in fade-in slide-in-from-bottom-2 duration-300"><StepHypothesesPicking 
                     theories={state.selectedTheories}
                     theoriesHypotheses={state.theoriesHypotheses}
                     selectedHypotheses={state.userSelectedHypotheses}
@@ -232,10 +240,11 @@ const App: React.FC = () => {
                     onBack={() => setState(p => ({ ...p, step: 2, error: null }))}
                     lang={state.language!}
                 />
+                </div>
             )}
 
             {state.step === 4 && state.finalReport && (
-                <StepReport 
+                <div key="step4" className="animate-in fade-in slide-in-from-bottom-2 duration-300"><StepReport 
                     report={state.finalReport}
                     theories={state.selectedTheories} 
                     theoriesHypotheses={state.theoriesHypotheses}
@@ -247,18 +256,19 @@ const App: React.FC = () => {
                     onBack={() => setState(p => ({ ...p, step: 3, error: null }))}
                     lang={state.language!}
                 />
+                </div>
             )}
         </main>
       </div>
 
       {state.step !== 0 && (
-          <footer className="w-full py-10 text-center mt-20 border-t border-slate-100 bg-white">
+          <footer className="w-full py-10 text-center mt-12 border-t border-slate-100 bg-white">
               <p className="text-slate-700 font-bold text-sm">{currentTranslations.footerRights}</p>
               <p className="text-slate-500 text-xs font-medium mt-2 font-mono tracking-widest opacity-70" dir="ltr">@mShareeda 2025</p>
           </footer>
       )}
       
-      {(state.isLoading || isLoadingMore) && <Loading lang={state.language} />}
+      {(state.isLoading || isLoadingMore) && <Loading lang={state.language} message={state.loadingMessage} />}
     </div>
   );
 };

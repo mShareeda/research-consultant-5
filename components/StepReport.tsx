@@ -93,12 +93,12 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
           
           <div className="h-6 w-px bg-slate-200 mx-1 flex-shrink-0"></div>
 
-          <button 
+          <button
             onClick={handleCopyReport}
             className="flex-shrink-0 px-3 md:px-4 py-2.5 md:py-3 text-slate-600 hover:text-indigo-600 rounded-xl flex items-center gap-1.5 font-bold transition-all text-xs md:text-sm border border-slate-100 bg-white hover:bg-slate-50"
           >
             {copying ? <CheckCircle className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-            <span className="hidden sm:inline">{copying ? (lang === 'ar' ? 'تم النسخ' : 'Copied') : (lang === 'ar' ? 'نسخ النص' : 'Copy Text')}</span>
+            <span className="hidden sm:inline">{copying ? t.copiedLabel : t.copyTextLabel}</span>
           </button>
 
           <button onClick={onReset} className="flex-shrink-0 px-4 md:px-6 py-2.5 md:py-3 bg-indigo-600 text-white border border-indigo-700 rounded-xl flex items-center gap-1.5 font-bold shadow-md transition-all hover:bg-indigo-700 active:scale-95 text-xs md:text-sm">
@@ -108,7 +108,7 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
         </div>
       </div>
 
-      <div className="rounded-3xl md:rounded-[2.5rem] shadow-xl border border-slate-100 bg-white relative overflow-hidden">
+      <div className="rounded-3xl md:rounded-[2.5rem] shadow-xl border border-slate-200 bg-white relative overflow-hidden">
          <div id="report-content" className="p-6 md:p-16 relative bg-white">
             <div className="absolute top-0 left-0 w-full h-2 md:h-3 bg-gradient-to-r from-indigo-600 via-blue-500 to-indigo-600 no-print"></div>
             
@@ -194,62 +194,69 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
 
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mb-10 md:mb-14">
                 <div className="bg-emerald-50/80 border border-emerald-100 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm variable-box iv-box">
-                    <div className="flex items-center gap-2 mb-3 md:mb-4">
+                    <div className="flex flex-col gap-2 mb-4 md:mb-5">
+                      <div className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-emerald-600 bg-emerald-100 px-2.5 py-1 rounded-lg w-fit">INDEPENDENT VARIABLE</div>
                       <h4 className="text-emerald-800 font-extrabold uppercase tracking-wider text-[10px] md:text-xs">{t.ivLabel}</h4>
                     </div>
                     <p className="text-emerald-950 font-bold leading-relaxed text-xs md:text-base">{safeText(report.independent_variable)}</p>
                 </div>
                 <div className="bg-rose-50/80 border border-rose-100 rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm variable-box dv-box">
-                    <div className="flex items-center gap-2 mb-3 md:mb-4">
+                    <div className="flex flex-col gap-2 mb-4 md:mb-5">
+                      <div className="text-[8px] md:text-[9px] font-black uppercase tracking-widest text-rose-600 bg-rose-100 px-2.5 py-1 rounded-lg w-fit">DEPENDENT VARIABLE</div>
                       <h4 className="text-rose-800 font-extrabold uppercase tracking-wider text-[10px] md:text-xs">{t.dvLabel}</h4>
                     </div>
                     <p className="text-rose-950 font-bold leading-relaxed text-xs md:text-base">{safeText(report.dependent_variable)}</p>
                 </div>
             </div>
 
-            <div className="relative z-10 space-y-12 md:space-y-16">
-                <div>
-                     <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
-                        <div className="w-1.5 h-6 md:h-8 bg-amber-500 rounded-full"></div>
-                        <h3 className="font-black text-slate-900 flex items-center gap-2 md:gap-3 text-base md:text-xl">
-                            <Lightbulb className="w-5 md:w-6 h-5 md:h-6 text-amber-500" />
-                            {t.theoryHypotheses}
-                        </h3>
-                    </div>
-                    
-                    <div className="space-y-8 md:space-y-10">
-                        {theories.map((theory, tIdx) => {
-                            const theoryKey = Object.keys(theoriesHypotheses).find(k => k.toLowerCase().includes(theory.name.toLowerCase()) || theory.name.toLowerCase().includes(k.toLowerCase()));
-                            const allHyps = (theoryKey ? theoriesHypotheses[theoryKey] : theoriesHypotheses[theory.name]) || [];
-                            const theorySelected = allHyps.filter(h => selectedHypotheses.includes(h));
-                            
-                            if (theorySelected.length === 0) return null;
+            <hr className="border-slate-100 my-8 md:my-10 relative z-10" />
 
-                            return (
-                                <div key={tIdx} className="space-y-4 md:space-y-5">
-                                    <div className="flex items-center gap-2 md:gap-3 pb-2 md:pb-2.5 border-b border-slate-50">
-                                        <BookOpen className="w-4 md:w-5 h-4 md:h-5 text-indigo-600" />
-                                        <div className="flex items-center gap-2">
-                                          <h4 className="font-black text-indigo-900 text-xs md:text-base">
-                                              {t.theoryAxiomsLabel} {theory.name}
-                                          </h4>
-                                        </div>
-                                    </div>
-                                    <div className="grid gap-3 md:gap-4">
-                                        {theorySelected.map((hypothesis, idx) => (
-                                            <div key={idx} className="flex gap-3 md:gap-4 items-start bg-slate-50/30 p-4 md:p-5 rounded-xl md:rounded-2xl border border-slate-100/50 section-box">
-                                                <div className="w-2 md:w-2.5 h-2 md:h-2.5 mt-1.5 md:mt-2.5 rounded-full bg-amber-400 flex-shrink-0 shadow-sm shadow-amber-200"></div>
-                                                <span className="leading-relaxed font-bold text-slate-700 text-xs md:text-sm">{safeText(hypothesis)}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+            <div className="relative z-10">
+                <div className="flex items-center gap-2 md:gap-3 mb-6 md:mb-8">
+                    <div className="w-1.5 h-6 md:h-8 bg-amber-500 rounded-full"></div>
+                    <h3 className="font-black text-slate-900 flex items-center gap-2 md:gap-3 text-base md:text-xl">
+                        <Lightbulb className="w-5 md:w-6 h-5 md:h-6 text-amber-500" />
+                        {t.theoryHypotheses}
+                    </h3>
                 </div>
 
-                <div className="relative">
+                <div className="space-y-8 md:space-y-10">
+                    {theories.map((theory, tIdx) => {
+                        const theoryKey = Object.keys(theoriesHypotheses).find(k => k.toLowerCase().includes(theory.name.toLowerCase()) || theory.name.toLowerCase().includes(k.toLowerCase()));
+                        const allHyps = (theoryKey ? theoriesHypotheses[theoryKey] : theoriesHypotheses[theory.name]) || [];
+                        const theorySelected = allHyps.filter(h => selectedHypotheses.includes(h));
+
+                        if (theorySelected.length === 0) return null;
+
+                        return (
+                            <div key={tIdx} className="space-y-4 md:space-y-5">
+                                <div className="flex items-center gap-2 md:gap-3 pb-2 md:pb-2.5 border-b border-slate-50">
+                                    <BookOpen className="w-4 md:w-5 h-4 md:h-5 text-indigo-600" />
+                                    <div className="flex items-center gap-2">
+                                      <h4 className="font-black text-indigo-900 text-xs md:text-base">
+                                          {t.theoryAxiomsLabel} {theory.name}
+                                      </h4>
+                                    </div>
+                                </div>
+                                <div className="grid gap-3 md:gap-4">
+                                    {theorySelected.map((hypothesis, idx) => (
+                                        <div key={idx} className="flex gap-3 md:gap-4 items-start bg-slate-50/30 p-4 md:p-5 rounded-xl md:rounded-2xl border border-slate-100/50 section-box">
+                                            <div className="flex items-center gap-2 flex-shrink-0">
+                                              <span className="w-6 h-6 rounded-full bg-amber-400 text-white flex items-center justify-center text-[10px] font-black shadow-sm shadow-amber-200">H{idx + 1}</span>
+                                            </div>
+                                            <span className="leading-relaxed font-bold text-slate-700 text-xs md:text-sm">{safeText(hypothesis)}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+
+            <hr className="border-slate-100 my-8 md:my-10 relative z-10" />
+
+            <div className="relative z-10">
                      <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 md:gap-4 mb-6 md:mb-8 no-print">
                         <div className="flex items-center gap-2 md:gap-3">
                             <div className="w-1.5 h-6 md:h-8 bg-indigo-500 rounded-full"></div>
@@ -260,7 +267,7 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
                         </div>
                         <div className="bg-indigo-50 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-indigo-600 font-black italic text-[10px] md:text-xs">
                             <Link className="w-3 h-3" />
-                            {lang === 'ar' ? 'مشتقة من الركائز النظرية المختارة' : 'Derived from selected core axioms'}
+                            {t.derivedFromLabel}
                         </div>
                     </div>
                     <ul className="space-y-5 md:space-y-6">
@@ -276,7 +283,7 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
                                         <div className="pt-3 border-t border-indigo-50">
                                             <div className="flex items-center gap-2 text-indigo-500 text-[10px] md:text-[11px] font-black mb-2 uppercase tracking-widest">
                                                 <Quote className="w-3 h-3" />
-                                                {lang === 'ar' ? 'الارتباط النظري بالفرضيات الأساسية:' : 'Theoretical Derivation:'}
+                                                {t.theoreticalDerivationLabel}
                                             </div>
                                             <div className="flex flex-wrap gap-2">
                                                 {hypothesis.derived_from.map((derivation, dIdx) => (
@@ -293,18 +300,17 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
                         ))}
                     </ul>
                 </div>
-            </div>
 
-            <div className="mt-10 pt-6 border-t border-slate-50 text-center relative z-10 disclaimer">
-                 <div className="bg-slate-50/50 rounded-xl p-4 md:p-5 border border-slate-200/40 max-w-2xl mx-auto shadow-inner">
-                    <div className="flex items-center justify-center gap-2 mb-1.5 text-amber-600/70 font-bold uppercase text-[10px] md:text-xs">
-                        <AlertTriangle className="w-3.5 h-3.5" />
-                        <span>{t.disclaimerTitle}</span>
-                    </div>
-                    <p className="text-slate-400 font-medium leading-relaxed text-[10px] md:text-[11px]">{t.disclaimerText}</p>
-                 </div>
+                <div className="mt-10 pt-6 border-t border-slate-50 text-center disclaimer">
+                     <div className="bg-slate-50/50 rounded-xl p-4 md:p-5 border border-slate-200/40 max-w-2xl mx-auto shadow-inner">
+                        <div className="flex items-center justify-center gap-2 mb-1.5 text-amber-600/70 font-bold uppercase text-[10px] md:text-xs">
+                            <AlertTriangle className="w-3.5 h-3.5" />
+                            <span>{t.disclaimerTitle}</span>
+                        </div>
+                        <p className="text-slate-400 font-medium leading-relaxed text-[10px] md:text-[11px]">{t.disclaimerText}</p>
+                     </div>
+                </div>
             </div>
-         </div>
       </div>
     </div>
   );

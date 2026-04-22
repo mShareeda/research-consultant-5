@@ -23,11 +23,12 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
     return (
         <div className="w-full max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-4">
-                <div className="border-2 border-indigo-600 w-16 h-16 rounded-2xl flex items-center justify-center text-indigo-600 mx-auto mb-4">
-                    <ClipboardList className="w-8 h-8" />
+                <div className="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center text-indigo-600 mx-auto mb-4">
+                    <ClipboardList className="w-7 h-7" />
                 </div>
                 <h2 className="font-bold text-slate-900 text-2xl md:text-3xl">{t.hypothesesPickTitle}</h2>
                 <p className="text-slate-600 font-medium max-w-xl mx-auto text-sm md:text-base">{t.hypothesesPickSubtitle}</p>
+                <p className="text-slate-500 font-medium text-xs md:text-sm max-w-xl mx-auto">Select at least 1 hypothesis per theory for best report quality</p>
             </div>
 
             <div className="space-y-10">
@@ -39,7 +40,7 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
 
                     return (
                         <div key={idx} className="bg-white rounded-card border border-slate-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
-                            <div className="bg-primary-light px-6 md:px-8 py-5 border-l-4 border-indigo-600 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div className={`bg-primary-light px-6 md:px-8 py-5 ${lang === 'ar' ? 'border-r-4' : 'border-l-4'} border-indigo-600 flex flex-col md:flex-row md:items-center justify-between gap-4`}>
                                 <div className="flex items-center gap-3">
                                     <Book className="w-5 h-5 text-indigo-600" />
                                     <div className="flex items-center gap-2">
@@ -88,7 +89,7 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
                                                     {hyp}
                                                 </p>
                                                 {isSelected && (
-                                                    <div className="absolute top-2 right-2 md:top-3 md:right-3">
+                                                    <div className={`absolute top-2 ${lang === 'ar' ? 'left-2' : 'right-2'} md:top-3 ${lang === 'ar' ? 'md:left-3' : 'md:right-3'}`}>
                                                         <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
                                                     </div>
                                                 )}
@@ -98,7 +99,7 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
                                 ) : (
                                     <div className="flex items-center gap-3 p-6 bg-amber-50 rounded-2xl border border-amber-100 text-amber-700">
                                         <AlertCircle className="w-5 h-5" />
-                                        <p className="font-bold text-sm">تعذر تحميل فرضيات هذه النظرية، يرجى العودة والمحاولة مرة أخرى أو اختيار نظرية بديلة.</p>
+                                        <p className="font-bold text-sm">{t.hypothesisLoadError}</p>
                                     </div>
                                 )}
                             </div>
@@ -107,18 +108,23 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
                 })}
             </div>
 
-            <div className="flex flex-col md:flex-row gap-4 pt-8 pb-12">
+            <div className="flex flex-col md:flex-row gap-4 pt-8 pb-12 sticky bottom-0 bg-white/95 backdrop-blur-sm p-4 -mx-4 md:static md:bg-transparent md:backdrop-blur-none md:p-0">
+                <div className="md:hidden">
+                    <div className="text-center text-sm font-bold text-slate-600 mb-3">
+                        {selectedHypotheses.length} hypothesis selected
+                    </div>
+                </div>
                 <button
                     onClick={onBack}
-                    className="flex-1 px-8 py-4 rounded-2xl bg-white border border-slate-200 text-slate-500 font-bold hover:bg-slate-50 transition-all flex items-center justify-center gap-2 active:scale-95"
+                    className="w-12 h-12 p-0 rounded-2xl bg-white border border-slate-200 text-slate-500 font-bold hover:bg-slate-50 transition-all flex items-center justify-center flex-shrink-0 active:scale-95 md:flex-1 md:w-auto md:h-auto md:px-8 md:py-4"
                 >
                     {lang === 'ar' ? <ArrowRight className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
-                    {t.backBtn}
+                    <span className="hidden md:inline">{t.backBtn}</span>
                 </button>
                 <button
                     onClick={onSubmit}
                     disabled={selectedHypotheses.length === 0}
-                    className={`flex-[2] px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all active:scale-95 ${
+                    className={`flex-1 px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all active:scale-95 ${
                         selectedHypotheses.length > 0
                         ? "bg-indigo-600 text-white shadow-xl shadow-indigo-100 hover:bg-indigo-700"
                         : "bg-slate-100 text-slate-400 cursor-not-allowed"
