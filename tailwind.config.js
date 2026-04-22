@@ -10,6 +10,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Cairo', 'sans-serif'],
+        display: ['Instrument Serif', 'Cairo', 'serif'],
       },
       colors: {
         indigo: {
@@ -25,12 +26,18 @@ export default {
           900: '#1e3a8a',
           950: '#172554',
         },
+        gold: '#B5851B',
+        'gold-light': '#FEF3C7',
+        ink: '#0F172A',
+        surface: '#FAFAF8',
       },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
         'card': '0 4px 20px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(0, 0, 0, 0.05)',
         'card-hover': '0 20px 40px -5px rgba(0, 0, 0, 0.1)',
-        'glow': '0 0 20px rgba(99, 102, 241, 0.15)',
+      },
+      borderRadius: {
+        card: '20px',
+        sheet: '28px',
       },
       animation: {
         'shimmer': 'shimmer 2s infinite linear',

@@ -141,7 +141,7 @@ const App: React.FC = () => {
   const currentTranslations = getSafeTranslations(state.language);
 
   return (
-    <div className={`min-h-screen w-full pb-0 flex flex-col bg-slate-50/50 ${state.language === 'ar' ? 'font-sans' : ''}`}>
+    <div className={`min-h-screen w-full pb-0 flex flex-col bg-surface ${state.language === 'ar' ? 'font-sans' : ''}`}>
       {state.step !== 0 && <Header lang={state.language} />}
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow w-full mt-8">
@@ -156,51 +156,49 @@ const App: React.FC = () => {
             {state.step === 0 && (
                 <div className="min-h-[90vh] w-full flex flex-col items-center justify-center p-4">
                      {/* Outside Branding Section */}
-                     <div className="text-center mb-10 space-y-8 animate-in fade-in slide-in-from-top-6 duration-1000">
+                     <div className="text-center mb-10 space-y-8">
                          {/* Logo First */}
                          <div className="relative">
-                            <img 
-                              src="https://drive.google.com/thumbnail?id=1uEEM3KvDl2vrTEF25p3HBvCOXQF3KsGW&sz=w1000" 
-                              alt="Logo" 
-                              className="h-32 md:h-44 mx-auto object-contain drop-shadow-2xl transition-transform hover:scale-105 duration-500"
+                            <img
+                              src="https://drive.google.com/thumbnail?id=1uEEM3KvDl2vrTEF25p3HBvCOXQF3KsGW&sz=w1000"
+                              alt="Logo"
+                              className="h-32 md:h-44 mx-auto object-contain drop-shadow-sm transition-transform hover:scale-105 duration-500"
                             />
                          </div>
 
                          {/* Titles Second with increased spacing */}
                          <div className="space-y-6">
-                            <h1 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight bg-gradient-to-r from-indigo-900 via-slate-800 to-indigo-900 bg-clip-text text-transparent drop-shadow-sm leading-tight">
+                            <h1 className="text-3xl md:text-5xl font-black text-ink tracking-tight leading-tight">
                                 نظام مواءمة النظرية الذكي
                             </h1>
-                            <h2 className="text-lg md:text-2xl font-bold text-slate-500 tracking-[0.2em] uppercase pt-2">
+                            <h2 className="text-lg md:text-2xl font-bold text-slate-600 tracking-[0.15em] uppercase pt-2">
                                 Smart Theory Alignment System
                             </h2>
                          </div>
                      </div>
 
                      {/* Language Selection Container */}
-                     <div className="bg-white/80 backdrop-blur-2xl p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-white/50 max-w-xl w-full text-center space-y-10 animate-in zoom-in duration-700 delay-300">
+                     <div className="bg-white p-8 md:p-12 rounded-sheet shadow-card border border-slate-100 max-w-xl w-full text-center space-y-10">
                          {/* Reordered descriptive text: English Left, Arabic Right */}
-                         <div className="text-slate-500 font-bold text-sm md:text-base italic flex items-center justify-center gap-2 flex-wrap" dir="ltr">
+                         <div className="text-slate-600 font-medium text-sm md:text-base flex items-center justify-center gap-2 flex-wrap" dir="ltr">
                             <span>Choose Interface Language</span>
                             <span className="text-slate-300">/</span>
                             <span dir="rtl">اختر لغة الواجهة</span>
                          </div>
-                         
+
                          <div className="grid grid-cols-2 gap-6">
-                             <button 
+                             <button
                                 onClick={() => selectLanguage('ar')}
-                                className="group relative overflow-hidden bg-white border-2 border-slate-100 hover:border-indigo-500 p-6 md:p-10 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 flex flex-col items-center justify-center active:scale-95"
+                                className="bg-white border-2 border-slate-100 hover:border-indigo-600 p-6 md:p-10 rounded-2xl shadow-sm hover:shadow-card transition-all duration-300 flex flex-col items-center justify-center active:scale-95"
                              >
-                                 <span className="font-black text-2xl md:text-3xl text-slate-800 group-hover:text-indigo-600 transition-colors">العربية</span>
-                                 <div className="h-1 w-0 group-hover:w-full bg-indigo-600 transition-all duration-300 mt-2 rounded-full"></div>
+                                 <span className="font-bold text-2xl md:text-3xl text-slate-800">العربية</span>
                              </button>
 
-                             <button 
+                             <button
                                 onClick={() => selectLanguage('en')}
-                                className="group relative overflow-hidden bg-white border-2 border-slate-100 hover:border-indigo-500 p-6 md:p-10 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-300 flex flex-col items-center justify-center active:scale-95"
+                                className="bg-white border-2 border-slate-100 hover:border-indigo-600 p-6 md:p-10 rounded-2xl shadow-sm hover:shadow-card transition-all duration-300 flex flex-col items-center justify-center active:scale-95"
                              >
-                                 <span className="font-black text-2xl md:text-3xl text-slate-800 group-hover:text-indigo-600 transition-colors">English</span>
-                                 <div className="h-1 w-0 group-hover:w-full bg-indigo-600 transition-all duration-300 mt-2 rounded-full"></div>
+                                 <span className="font-bold text-2xl md:text-3xl text-slate-800">English</span>
                              </button>
                          </div>
                      </div>
@@ -254,9 +252,9 @@ const App: React.FC = () => {
       </div>
 
       {state.step !== 0 && (
-          <footer className="w-full py-10 text-center mt-20 border-t border-slate-200 bg-white/50">
-              <p className="text-slate-700 font-black text-sm">{currentTranslations.footerRights}</p>
-              <p className="text-slate-400 text-xs font-bold mt-2 font-mono tracking-widest opacity-60" dir="ltr">@mShareeda 2025</p>
+          <footer className="w-full py-10 text-center mt-20 border-t border-slate-100 bg-white">
+              <p className="text-slate-700 font-bold text-sm">{currentTranslations.footerRights}</p>
+              <p className="text-slate-500 text-xs font-medium mt-2 font-mono tracking-widest opacity-70" dir="ltr">@mShareeda 2025</p>
           </footer>
       )}
       

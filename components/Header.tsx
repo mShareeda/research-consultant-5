@@ -15,20 +15,20 @@ const Header: React.FC<HeaderProps> = ({ lang }) => {
     <header className="w-full py-2 md:py-3 bg-white/80 backdrop-blur-xl border-b border-slate-200/60 sticky top-0 z-40 transition-all duration-300 supports-[backdrop-filter]:bg-white/60 shadow-sm no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex flex-row items-center justify-between gap-3 md:gap-4 relative ${lang === 'en' ? 'flex-row-reverse' : ''}`}>
-          
+
           {/* Branding */}
           <div className="flex items-center z-10 select-none flex-shrink-0">
-             <img 
-               src="https://drive.google.com/thumbnail?id=1uEEM3KvDl2vrTEF25p3HBvCOXQF3KsGW&sz=w1000" 
+             <img
+               src="https://drive.google.com/thumbnail?id=1uEEM3KvDl2vrTEF25p3HBvCOXQF3KsGW&sz=w1000"
                referrerPolicy="no-referrer"
-               alt="Logo" 
-               className="h-14 sm:h-20 md:h-32 w-auto min-w-[90px] sm:min-w-[120px] object-contain drop-shadow-sm transition-all"
+               alt="Logo"
+               className="h-12 md:h-20 w-auto min-w-[80px] md:min-w-[100px] object-contain transition-all"
              />
           </div>
 
           {/* Title Area */}
           <div className={`w-full pointer-events-none flex-grow flex flex-col justify-center overflow-hidden ${lang === 'en' ? 'items-start text-left' : 'items-end text-right'}`}>
-            <h1 className="text-sm sm:text-lg md:text-3xl lg:text-4xl font-black text-slate-800 tracking-tight pointer-events-auto drop-shadow-sm bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent leading-snug md:leading-tight py-1 md:py-4 truncate max-w-full">
+            <h1 className={`text-sm sm:text-lg md:text-2xl font-bold text-ink tracking-tight pointer-events-auto leading-snug md:leading-tight py-1 md:py-2 truncate max-w-full ${lang === 'en' ? 'font-display' : ''}`}>
               {t.appTitle}
             </h1>
             

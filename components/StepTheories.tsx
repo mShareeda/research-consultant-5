@@ -122,10 +122,9 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
           return (
             <div
                 key={idx}
-                style={{ animationDelay: `${idx * 150}ms` }}
-                className={`rounded-[1.5rem] md:rounded-[2rem] p-1.5 md:p-2 shadow-card hover:shadow-card-hover border transition-all duration-500 flex flex-col group h-full opacity-0 animate-fade-in-up relative overflow-hidden
-                ${isAdopted 
-                    ? "bg-indigo-50/40 border-indigo-600 ring-4 ring-indigo-100/50 scale-[1.02] z-10" 
+                className={`rounded-card p-1.5 md:p-2 shadow-card hover:shadow-card-hover border transition-all duration-300 flex flex-col group h-full relative overflow-hidden
+                ${isAdopted
+                    ? "bg-primary-light border-indigo-600"
                     : "bg-white border-slate-100"}`}
             >
                 {/* Selection Badge (Icon Only) */}
@@ -137,13 +136,13 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
 
                 <div className="p-4 md:p-6 flex flex-col h-full relative z-10">
                     <div className="flex items-start gap-3 md:gap-4 mb-4 pr-1">
-                        <div className={`p-2.5 md:p-3 rounded-xl md:rounded-2xl flex-shrink-0 transition-all duration-300 ${isAdopted ? 'bg-indigo-600 text-white scale-110 shadow-glow' : 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white'}`}>
+                        <div className={`p-2.5 md:p-3 rounded-xl flex-shrink-0 transition-all ${isAdopted ? 'bg-indigo-600 text-white' : 'bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white'}`}>
                             <Lightbulb className="w-5 h-5 md:w-6 md:h-6" />
                         </div>
                         <h3 className={`font-bold text-sm md:text-base leading-tight pt-0.5 md:pt-1 flex-grow transition-colors ${isAdopted ? 'text-indigo-900' : 'text-slate-900'}`}>{theory.name}</h3>
                     </div>
 
-                    <div className={`p-4 md:p-5 rounded-xl md:rounded-2xl mb-4 md:mb-6 flex-grow border transition-all ${isAdopted ? 'bg-white/80 border-indigo-100 shadow-inner' : 'bg-slate-50/80 border-slate-100/50'}`}>
+                    <div className={`p-4 md:p-5 rounded-xl mb-4 md:mb-6 flex-grow border transition-all ${isAdopted ? 'bg-white border-indigo-100' : 'bg-slate-50 border-slate-100'}`}>
                         <p className={`text-xs md:sm leading-relaxed font-medium text-justify whitespace-pre-wrap line-clamp-[6] md:line-clamp-none transition-colors ${isAdopted ? 'text-indigo-800' : 'text-slate-600'}`}>
                             {safeText(theory.match_reason)}
                         </p>
@@ -213,9 +212,9 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
       {/* Theory Detail Modal */}
       {selectedDetailTheory && (
           <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-md z-[60] flex items-center justify-center p-0 md:p-4">
-              <div className="bg-white md:rounded-[2.5rem] w-full max-w-5xl shadow-2xl animate-in zoom-in-95 duration-200 border border-slate-200 relative overflow-hidden flex flex-col h-full md:h-[92vh]">
+              <div className="bg-white md:rounded-sheet w-full max-w-5xl shadow-2xl fade-in duration-200 border border-slate-100 relative overflow-hidden flex flex-col h-full md:h-[92vh]">
                    {/* Header Section */}
-                   <div className="bg-gradient-to-br from-indigo-600 to-indigo-800 p-6 md:p-10 text-white relative flex-shrink-0">
+                   <div className="bg-indigo-900 p-6 md:p-10 text-white relative flex-shrink-0">
                         <button 
                             onClick={() => setSelectedDetailTheory(null)} 
                             className={`absolute top-4 md:top-8 ${lang === 'ar' ? 'left-4 md:left-8' : 'right-4 md:right-8'} bg-white/20 p-2 md:p-2.5 rounded-full text-white hover:bg-white/30 transition-all z-20 hover:rotate-90`}
@@ -232,15 +231,15 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
                    </div>
                    
                    {/* Scrollable Content Area */}
-                   <div className="p-5 md:p-14 space-y-8 md:space-y-16 overflow-y-auto flex-grow bg-white custom-scrollbar-v2">
+                   <div className="p-5 md:p-10 space-y-8 md:space-y-12 overflow-y-auto flex-grow bg-white custom-scrollbar-v2">
                         
                         {/* 1. Academic Background */}
-                        <section className="space-y-4 md:space-y-8 animate-in slide-in-from-bottom-4 duration-400">
+                        <section className="space-y-4 md:space-y-8">
                             <div className="flex items-center gap-3 md:gap-4 text-indigo-700">
                                 <BookMarked className="w-6 h-6 md:w-8 md:h-8" />
-                                <h3 className="font-black border-b-2 md:border-b-4 border-indigo-100 pb-1.5 md:pb-2 text-base md:text-xl">{t.theoryBackgroundLabel}</h3>
+                                <h3 className="font-bold border-b-2 border-indigo-100 pb-1.5 md:pb-2 text-base md:text-lg">{t.theoryBackgroundLabel}</h3>
                             </div>
-                            <div className="text-slate-800 leading-relaxed md:leading-[2.1] font-bold text-justify bg-slate-50/50 p-6 md:p-10 rounded-2xl md:rounded-[3rem] border border-slate-100/80 shadow-inner space-y-4 md:space-y-8 text-sm md:text-base">
+                            <div className="text-slate-800 leading-relaxed md:leading-[1.8] font-medium text-justify bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-100 space-y-4 md:space-y-6 text-sm md:text-base">
                                 {safeText(selectedDetailTheory.background).split('\n').filter(p => p.trim()).map((para, i) => (
                                     <p key={i} className="animate-in fade-in duration-700" style={{ transitionDelay: `${i * 100}ms` }}>{para.trim()}</p>
                                 ))}
@@ -415,23 +414,18 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
                                 ))}
                             </div>
 
-                            <div className="bg-indigo-600 rounded-[2rem] md:rounded-[3rem] p-8 md:p-14 text-white shadow-2xl relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-white/5 rounded-full -mr-16 -mt-16 md:-mr-20 md:-mt-20 blur-2xl md:blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
-                                
-                                <div className="relative z-10">
-                                    <div className="inline-flex items-center gap-2 px-3 md:px-5 py-1.5 md:py-2 rounded-full bg-white/20 backdrop-blur-md mb-6 md:mb-8 border border-white/20 text-indigo-50 font-black tracking-widest uppercase text-[10px] md:text-xs">
-                                        <Sparkles className="w-3 md:w-4 h-3 md:h-4" />
+                            <div className="bg-indigo-900 rounded-2xl p-8 md:p-10 text-white shadow-2xl">
+                                <div className="mb-4 md:mb-6">
+                                    <div className="text-indigo-100 font-bold tracking-widest uppercase text-[10px] md:text-xs mb-4">
                                         {t.recommendation}
                                     </div>
-                                    <h3 className="font-black mb-4 md:mb-6 leading-tight text-base md:text-2xl">
+                                    <h3 className="font-bold text-base md:text-xl leading-tight">
                                         {lang === 'ar' ? 'الرؤية المنهجية الختامية' : 'Final Methodological Insight'}
                                     </h3>
-                                    <div className="max-w-4xl">
-                                        <p className="leading-relaxed md:leading-loose font-bold text-indigo-50 text-justify text-xs md:text-base opacity-95">
-                                            {safeText(comparisonResult.recommendation)}
-                                        </p>
-                                    </div>
                                 </div>
+                                <p className="leading-relaxed md:leading-loose font-medium text-indigo-50 text-justify text-sm md:text-base">
+                                    {safeText(comparisonResult.recommendation)}
+                                </p>
                             </div>
                         </div>
                     ) : null}

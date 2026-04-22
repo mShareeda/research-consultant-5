@@ -21,13 +21,13 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
     const t = translations[lang];
 
     return (
-        <div className="w-full max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="w-full max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-4">
-                <div className="bg-indigo-600 w-16 h-16 rounded-2xl flex items-center justify-center text-white mx-auto shadow-lg shadow-indigo-100 mb-4">
+                <div className="border-2 border-indigo-600 w-16 h-16 rounded-2xl flex items-center justify-center text-indigo-600 mx-auto mb-4">
                     <ClipboardList className="w-8 h-8" />
                 </div>
-                <h2 className="font-black text-slate-900 text-2xl md:text-3xl">{t.hypothesesPickTitle}</h2>
-                <p className="text-slate-500 font-medium max-w-xl mx-auto text-sm md:text-base">{t.hypothesesPickSubtitle}</p>
+                <h2 className="font-bold text-slate-900 text-2xl md:text-3xl">{t.hypothesesPickTitle}</h2>
+                <p className="text-slate-600 font-medium max-w-xl mx-auto text-sm md:text-base">{t.hypothesesPickSubtitle}</p>
             </div>
 
             <div className="space-y-10">
@@ -38,12 +38,12 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
                     const allSelected = hyps.length > 0 && hyps.every(h => selectedHypotheses.includes(h));
 
                     return (
-                        <div key={idx} className="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
-                            <div className="bg-slate-50 px-6 md:px-8 py-5 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div key={idx} className="bg-white rounded-card border border-slate-100 shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
+                            <div className="bg-primary-light px-6 md:px-8 py-5 border-l-4 border-indigo-600 flex flex-col md:flex-row md:items-center justify-between gap-4">
                                 <div className="flex items-center gap-3">
                                     <Book className="w-5 h-5 text-indigo-600" />
                                     <div className="flex items-center gap-2">
-                                      <h3 className="font-black text-slate-800 text-sm md:text-base">
+                                      <h3 className="font-bold text-slate-800 text-sm md:text-base">
                                           {t.theoryAxiomsLabel} <span className="text-indigo-600">{theory.name}</span>
                                       </h3>
                                     </div>
@@ -72,8 +72,8 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
                                                 key={hIdx}
                                                 onClick={() => onToggle(hyp)}
                                                 className={`w-full flex items-start gap-4 p-5 rounded-2xl border-2 transition-all text-justify relative group/item ${
-                                                    isSelected 
-                                                    ? "bg-indigo-50 border-indigo-600 shadow-md ring-4 ring-indigo-50 scale-[1.01] z-10" 
+                                                    isSelected
+                                                    ? "bg-indigo-50 border-indigo-600 shadow-md"
                                                     : "bg-white border-slate-100 hover:border-indigo-200 hover:bg-slate-50/50"
                                                 }`}
                                             >
@@ -89,7 +89,7 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
                                                 </p>
                                                 {isSelected && (
                                                     <div className="absolute top-2 right-2 md:top-3 md:right-3">
-                                                        <div className="w-2 h-2 bg-indigo-600 rounded-full animate-pulse"></div>
+                                                        <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
                                                     </div>
                                                 )}
                                             </button>
@@ -118,9 +118,9 @@ const StepHypothesesPicking: React.FC<StepHypothesesPickingProps> = ({
                 <button
                     onClick={onSubmit}
                     disabled={selectedHypotheses.length === 0}
-                    className={`flex-[2] px-8 py-4 rounded-2xl font-black flex items-center justify-center gap-3 transition-all active:scale-95 ${
+                    className={`flex-[2] px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all active:scale-95 ${
                         selectedHypotheses.length > 0
-                        ? "bg-indigo-600 text-white shadow-xl shadow-indigo-100 hover:bg-indigo-700 hover:-translate-y-1"
+                        ? "bg-indigo-600 text-white shadow-xl shadow-indigo-100 hover:bg-indigo-700"
                         : "bg-slate-100 text-slate-400 cursor-not-allowed"
                     }`}
                 >

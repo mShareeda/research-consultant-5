@@ -72,7 +72,7 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
         <form onSubmit={handleSubmit} className="space-y-8 md:space-y-10">
           {/* Academic Level Section */}
           <div className="space-y-4">
-            <label className={`flex items-center gap-2 font-extrabold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
+            <label className={`flex items-center gap-2 font-bold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
               {t.levelLabel}
             </label>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
@@ -86,8 +86,8 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
                     onClick={() => setLevel(lvl.id)}
                     className={`relative p-3.5 md:p-4 rounded-2xl transition-all duration-300 flex flex-row md:flex-col items-center md:justify-center gap-4 md:gap-3 group border-2 ${
                       isSelected
-                        ? "bg-indigo-50/50 border-indigo-600 shadow-glow md:scale-105"
-                        : "bg-white border-slate-100 hover:border-indigo-200 hover:bg-slate-50 md:hover:scale-[1.02]"
+                        ? "bg-primary-light border-indigo-600 shadow-card"
+                        : "bg-white border-slate-100 hover:border-indigo-200 hover:bg-slate-50"
                     }`}
                   >
                     <div className={`p-2.5 md:p-3 rounded-xl transition-colors flex-shrink-0 ${isSelected ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-400 group-hover:text-indigo-500 group-hover:bg-indigo-50"}`}>
@@ -100,7 +100,7 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
                       <div className="text-[11px] md:text-sm font-medium text-slate-400 md:mt-1">{lvl.desc}</div>
                     </div>
                     {isSelected && (
-                        <div className={`absolute top-2.5 right-2.5 md:top-3 md:right-3 w-1.5 h-1.5 bg-indigo-600 rounded-full animate-ping`}></div>
+                        <div className={`absolute top-2.5 right-2.5 md:top-3 md:right-3 w-1.5 h-1.5 bg-indigo-600 rounded-full`}></div>
                     )}
                   </button>
                 );
@@ -110,7 +110,7 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
 
           {/* Research Type Section */}
           <div className="space-y-4">
-            <label className={`flex items-center gap-2 font-extrabold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-purple-500`}>
+            <label className={`flex items-center gap-2 font-bold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
               {t.typeLabel}
             </label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
@@ -124,21 +124,21 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
                     onClick={() => setResearchType(rt.id)}
                     className={`relative p-3.5 md:p-4 rounded-2xl transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 md:gap-4 group border-2 ${
                       isSelected
-                        ? "bg-purple-50/50 border-purple-600 shadow-glow md:scale-105"
-                        : "bg-white border-slate-100 hover:border-purple-200 hover:bg-slate-50 md:hover:scale-[1.02]"
+                        ? "bg-primary-light border-indigo-600 shadow-card"
+                        : "bg-white border-slate-100 hover:border-indigo-200 hover:bg-slate-50"
                     }`}
                   >
-                    <div className={`p-2.5 md:p-3 rounded-xl transition-colors flex-shrink-0 ${isSelected ? "bg-purple-600 text-white" : "bg-slate-100 text-slate-400 group-hover:text-purple-500 group-hover:bg-purple-50"}`}>
+                    <div className={`p-2.5 md:p-3 rounded-xl transition-colors flex-shrink-0 ${isSelected ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-400 group-hover:text-indigo-600 group-hover:bg-indigo-50"}`}>
                       <Icon className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div>
-                      <div className={`font-bold text-sm md:text-base ${isSelected ? "text-purple-900" : "text-slate-600"}`}>
+                      <div className={`font-bold text-sm md:text-base ${isSelected ? "text-indigo-900" : "text-slate-600"}`}>
                         {rt.label}
                       </div>
                       <div className="text-[11px] md:text-sm font-medium text-slate-400 md:mt-1">{rt.desc}</div>
                     </div>
                     {isSelected && (
-                        <div className={`absolute top-2.5 right-2.5 md:top-3 md:right-3 w-1.5 h-1.5 bg-purple-600 rounded-full animate-ping`}></div>
+                        <div className={`absolute top-2.5 right-2.5 md:top-3 md:right-3 w-1.5 h-1.5 bg-indigo-600 rounded-full`}></div>
                     )}
                   </button>
                 );
@@ -148,9 +148,9 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
 
           {/* Research Foundation Section */}
           <div className="space-y-4">
-            <label className={`block font-extrabold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-emerald-500`}>
+            <label className={`block font-bold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
               {t.foundationLabel}
-              <span className={`text-xs md:text-sm font-medium text-slate-400 ${lang === 'ar' ? 'mr-2' : 'ml-2'}`}>{t.foundationSubLabel}</span>
+              <span className={`text-xs md:text-sm font-medium text-slate-500 ${lang === 'ar' ? 'mr-2' : 'ml-2'}`}>{t.foundationSubLabel}</span>
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
                 {foundations.map((foun) => {
@@ -162,12 +162,12 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
                             type="button"
                             onClick={() => setFoundation(foun.id)}
                             className={`p-3 md:p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-3 group ${
-                                isSelected 
-                                ? "bg-emerald-50 border-emerald-500 text-emerald-800 shadow-sm md:scale-105" 
+                                isSelected
+                                ? "bg-primary-light border-indigo-600 text-indigo-800 shadow-sm"
                                 : "bg-white border-slate-100 hover:bg-slate-50 hover:border-slate-200 text-slate-500"
                             }`}
                         >
-                            <div className={`p-2 rounded-lg transition-colors ${isSelected ? "bg-emerald-600 text-white" : "bg-slate-100 text-slate-400 group-hover:bg-emerald-50 group-hover:text-emerald-500"}`}>
+                            <div className={`p-2 rounded-lg transition-colors ${isSelected ? "bg-indigo-600 text-white" : "bg-slate-100 text-slate-400 group-hover:bg-indigo-50 group-hover:text-indigo-600"}`}>
                               <Icon className="w-5 h-5 md:w-6 md:h-6" />
                             </div>
                             <span className={`font-bold text-xs md:text-sm text-center leading-tight transition-colors ${isSelected ? "text-emerald-900" : ""}`}>
@@ -181,15 +181,14 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
 
           {/* Research Title Section */}
           <div className="space-y-4">
-            <label className={`block font-extrabold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-amber-500`}>
+            <label className={`block font-bold text-slate-900 ${lang === 'ar' ? 'mr-1 border-r-4 pr-3' : 'ml-1 border-l-4 pl-3'} border-indigo-600`}>
               {t.titleLabel}
             </label>
             <div className="relative group">
-                <div className="absolute inset-0 bg-indigo-500/5 rounded-3xl blur-xl transition-opacity opacity-0 group-focus-within:opacity-100"></div>
                 <textarea
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className={`relative w-full px-4 md:px-6 py-4 md:py-5 rounded-2xl bg-slate-50 border-2 border-slate-100 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all min-h-[140px] md:min-h-[160px] text-sm md:text-base font-medium leading-relaxed md:leading-loose resize-none shadow-inner ${lang === 'ar' ? 'text-right' : 'text-left'}`}
+                    className={`w-full px-4 md:px-6 py-4 md:py-5 rounded-2xl bg-slate-50 border-2 border-slate-100 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500/20 outline-none transition-all min-h-[140px] md:min-h-[160px] text-sm md:text-base font-medium leading-relaxed md:leading-loose resize-none ${lang === 'ar' ? 'text-right' : 'text-left'}`}
                     placeholder={t.titlePlaceholder}
                     required
                 />
@@ -205,9 +204,9 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
           <button
             type="submit"
             disabled={title.trim().length < 10 || !foundation || isSubmitting}
-            className={`w-full py-4 md:py-5 rounded-2xl font-bold flex items-center justify-center gap-3 group transition-all duration-300 relative overflow-hidden
+            className={`w-full py-4 md:py-5 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all duration-300 relative overflow-hidden
               ${title.trim().length >= 10 && foundation && !isSubmitting
-                ? "bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white shadow-lg shadow-indigo-200 hover:shadow-indigo-300 md:hover:-translate-y-0.5 active:translate-y-0" 
+                ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-200 hover:shadow-indigo-300"
                 : "bg-slate-100 text-slate-400 cursor-not-allowed"
               }`}
           >
