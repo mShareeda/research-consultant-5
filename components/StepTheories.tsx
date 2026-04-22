@@ -143,7 +143,7 @@ const StepTheories: React.FC<StepTheoriesProps> = ({
                     </div>
 
                     <div className={`p-4 md:p-5 rounded-xl mb-4 md:mb-6 flex-grow border transition-all ${isAdopted ? 'bg-white border-indigo-100' : 'bg-slate-50 border-slate-100'}`}>
-                        <p className={`text-xs md:sm leading-relaxed font-medium text-justify whitespace-pre-wrap line-clamp-[6] md:line-clamp-none transition-colors ${isAdopted ? 'text-indigo-800' : 'text-slate-600'}`}>
+                        <p className={`text-xs md:text-sm leading-relaxed font-medium text-justify whitespace-pre-wrap line-clamp-[6] md:line-clamp-none transition-colors ${isAdopted ? 'text-indigo-800' : 'text-slate-600'}`}>
                             {safeText(theory.match_reason)}
                         </p>
                     </div>

@@ -204,7 +204,7 @@ const StepInput: React.FC<StepInputProps> = ({ onSubmit, onBack, lang }) => {
           <button
             type="submit"
             disabled={title.trim().length < 10 || !foundation || isSubmitting}
-            className={`w-full py-4 md:py-5 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all duration-300 relative overflow-hidden
+            className={`w-full py-4 md:py-5 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all duration-300 relative overflow-hidden group
               ${title.trim().length >= 10 && foundation && !isSubmitting
                 ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg shadow-indigo-200 hover:shadow-indigo-300"
                 : "bg-slate-100 text-slate-400 cursor-not-allowed"

@@ -30,6 +30,7 @@ export default {
         'gold-light': '#FEF3C7',
         ink: '#0F172A',
         surface: '#FAFAF8',
+        'primary-light': '#EFF4FF',
       },
       boxShadow: {
         'card': '0 4px 20px rgba(0, 0, 0, 0.02), 0 10px 15px -3px rgba(0, 0, 0, 0.05)',
@@ -50,5 +51,5 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 }

@@ -13,7 +13,7 @@ const Loading: React.FC<LoadingProps> = ({ message, lang }) => {
   const t = getSafeTranslations(lang);
 
   return (
-    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-[70] flex items-center justify-center p-4">
       <div className="bg-white p-8 md:p-12 rounded-sheet shadow-2xl flex flex-col items-center gap-8 fade-in duration-300 max-w-md w-full text-center border border-slate-100">
 
         <div className="bg-primary-light p-6 rounded-full">

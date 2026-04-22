@@ -205,7 +205,7 @@ const App: React.FC = () => {
                 </div>
             )}
 
-            {state.step === 1 && <StepInput onSubmit={handleInputSubmit} onBack={() => setState(prev => ({ ...prev, step: 0 }))} lang={state.language!} />}
+            {state.step === 1 && <StepInput onSubmit={handleInputSubmit} onBack={() => setState(prev => ({ ...prev, step: 0, error: null }))} lang={state.language!} />}
 
             {state.step === 2 && (
                 <StepTheories 
@@ -213,7 +213,7 @@ const App: React.FC = () => {
                     selectedTheories={state.selectedTheories}
                     onToggleSelection={handleToggleTheory}
                     onProceed={handleProceedToHypotheses}
-                    onBack={() => setState(p => ({ ...p, step: 1 }))}
+                    onBack={() => setState(p => ({ ...p, step: 1, error: null }))}
                     onLoadMore={handleLoadMoreTheories}
                     onCompareResult={(res) => setState(p => ({ ...p, comparisonResult: res }))}
                     title={state.researchTitle}
@@ -229,7 +229,7 @@ const App: React.FC = () => {
                     onToggle={handleToggleHypothesis}
                     onToggleBatch={handleToggleBatchHypotheses}
                     onSubmit={handleGenerateReport}
-                    onBack={() => setState(p => ({ ...p, step: 2 }))}
+                    onBack={() => setState(p => ({ ...p, step: 2, error: null }))}
                     lang={state.language!}
                 />
             )}
@@ -244,7 +244,7 @@ const App: React.FC = () => {
                     level={state.academicLevel}
                     comparisonResult={state.comparisonResult}
                     onReset={resetApp}
-                    onBack={() => setState(p => ({ ...p, step: 3 }))}
+                    onBack={() => setState(p => ({ ...p, step: 3, error: null }))}
                     lang={state.language!}
                 />
             )}
