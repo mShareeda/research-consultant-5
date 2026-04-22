@@ -9,152 +9,112 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-blue.svg)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.3-blue.svg)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.1-blue.svg)](https://vitejs.dev/)
+[![Gemini API](https://img.shields.io/badge/Gemini%20API-1.30-orange.svg)](https://ai.google.dev/)
 
-[View Live Demo](#) • [Documentation](#documentation) • [Contributing](#contributing)
+[**Documentation**](#getting-started) • [**Contribute**](#contributing) • [**Report Issue**](https://github.com/mShareeda/research-consultant-5/issues)
 
 </div>
 
 ---
 
-## Overview
+## ✨ Introduction
 
-**Smart Theory Alignment System** is a professional research assistant platform that leverages AI to help graduate researchers and academics:
+A sophisticated research assistant platform designed for graduate researchers and academics. Leverage advanced AI to discover aligned theoretical frameworks, generate grounded hypotheses, and produce publication-ready research reports. Full bilingual support (Arabic/English) with an elegant, scholarly design system.
 
-- **Discover relevant theories** aligned with your research focus
-- **Generate academic hypotheses** grounded in established theoretical frameworks
-- **Compare theories** to understand differences, strengths, and weaknesses
-- **Produce comprehensive research reports** with methodology recommendations
+## Quick Start
 
-The system supports both **Arabic and English** interfaces, making it accessible to scholars across regions. Built with modern web technologies and enhanced with Impeccable design principles for a distinctive, professional aesthetic.
+```bash
+# Clone and setup
+git clone https://github.com/mShareeda/research-consultant-5.git
+cd research-consultant-5
+npm install
 
----
+# Configure API key
+echo "VITE_GEMINI_API_KEY=your_key_here" > .env.local
 
-## Features
+# Start development server
+npm run dev
+```
 
-### 🎯 Core Capabilities
-
-- **Intelligent Theory Suggestions** — AI-powered recommendations based on your research focus, academic level, and research type
-- **Bilingual Interface** — Full Arabic (RTL) and English support for seamless academic collaboration
-- **Theory Comparison** — Side-by-side analysis of selected theories with pros, cons, and recommendations
-- **Hypothesis Generation** — Automatic derivation of study-specific hypotheses from selected theories
-- **Research Reports** — Professional-grade reports with methodological justification and framework diagrams
-
-### 🎨 Design & UX
-
-- **Impeccable Design System** — Professional aesthetic with distinctive typography (Instrument Serif + Cairo) and intentional color hierarchy
-- **Accessibility First** — Reduced-motion support, high contrast ratios, semantic HTML
-- **Responsive Design** — Optimized for desktop, tablet, and mobile devices
-- **Smooth Interactions** — Purposeful animations and transitions without visual noise
-
-### 🔧 Technical
-
-- **TypeScript** — Full type safety and developer experience
-- **React 18** — Modern component architecture with hooks
-- **Vite** — Lightning-fast build and development experience
-- **Tailwind CSS** — Utility-first styling with custom design tokens
-- **Google Gemini API** — Advanced AI capabilities for research analysis
+Navigate to `http://localhost:5173` • [Get Gemini API Key](https://ai.google.dev/)
 
 ---
 
-## Getting Started
+## Core Features
 
-### Prerequisites
+| Feature | Description |
+|---------|-------------|
+| **AI-Powered Theory Discovery** | Intelligent recommendations based on research focus, academic level, and methodology |
+| **Theory Comparison** | Side-by-side analysis with strengths, weaknesses, and alignment assessment |
+| **Hypothesis Generation** | Automatic derivation of study-specific hypotheses from selected frameworks |
+| **Research Reports** | Publication-ready reports with methodology justification and visual diagrams |
+| **Bilingual Interface** | Full Arabic (RTL) and English (LTR) support for global research collaboration |
+| **Impeccable Design** | Scholarly aesthetic with Instrument Serif + Cairo typography, intentional hierarchy |
+| **Accessible & Responsive** | WCAG 2.1 AA compliant, mobile-optimized, keyboard navigation support |
 
-- **Node.js** 18+ or **Bun**
-- **Gemini API Key** ([Get one free](https://makersuite.google.com/app/apikey))
+---
 
-### Installation
+## Installation & Configuration
 
-1. **Clone the repository**
+### Requirements
+
+- **Node.js** 18+ (or **Bun**)
+- **Gemini API Key** – [Free at Google AI Studio](https://ai.google.dev/)
+
+### Setup
+
+1. **Clone repository**
    ```bash
-   git clone https://github.com/mShareeda/research-consultant-5.git
-   cd research-consultant-5
+   git clone https://github.com/mShareeda/research-consultant-5.git && cd research-consultant-5
    ```
 
 2. **Install dependencies**
    ```bash
-   npm install
-   ```
-   or with Bun:
-   ```bash
-   bun install
+   npm install    # or: bun install
    ```
 
-3. **Configure environment variables**
-   
-   Create a `.env.local` file in the project root:
-   ```env
-   VITE_GEMINI_API_KEY=your_gemini_api_key_here
+3. **Configure environment**
+   ```bash
+   echo "VITE_GEMINI_API_KEY=your_key_here" > .env.local
    ```
 
-4. **Start the development server**
+4. **Run locally**
    ```bash
-   npm run dev
+   npm run dev    # or: bun run dev
    ```
-   or with Bun:
-   ```bash
-   bun run dev
-   ```
-
-5. **Open in browser**
-   
-   Navigate to `http://localhost:5173` (or the URL shown in terminal)
+   Open [`http://localhost:5173`](http://localhost:5173)
 
 ---
 
-## Usage Guide
+## Workflow
 
-### Step 1: Language Selection
-Choose your preferred interface language (Arabic or English). Your selection is retained throughout the session.
-
-### Step 2: Research Input
-Provide:
-- **Research Title** — Your research question or topic (minimum 10 characters)
-- **Academic Level** — Bachelor, Master, or PhD
-- **Research Type** — Quantitative or Qualitative
-- **Research Foundation** — Field of study (Media, Social, Economic, Educational, etc.)
-
-### Step 3: Theory Selection
-Review AI-suggested theories aligned with your research. You can:
-- **View Details** — Read full background, principles, and key concepts
-- **Adopt Theories** — Select multiple theories for further analysis
-- **Load More** — Discover additional theory suggestions
-- **Compare** — Compare 2+ selected theories side-by-side
-
-### Step 4: Hypothesis Picking
-Select specific hypotheses from your chosen theories. The system supports:
-- **Individual selection** — Choose hypotheses one by one
-- **Batch selection** — Select/deselect all hypotheses from a theory at once
-
-### Step 5: Report Generation
-Generate a comprehensive research report featuring:
-- Theory integration justification
-- Independent and dependent variables
-- Study-specific hypotheses with theory mapping
-- Methodological framework diagram (Mermaid)
-- Professional formatting for academic submission
+| Step | Action | Outcome |
+|------|--------|---------|
+| **1. Language** | Select Arabic or English | Interface configures to your preference |
+| **2. Research Input** | Provide topic, level, type, field | System understands your research context |
+| **3. Theory Discovery** | Review AI-suggested theories | Compare frameworks, inspect details |
+| **4. Selection** | Choose theories & hypotheses | Build your theoretical foundation |
+| **5. Report Generation** | Generate publication-ready output | Framework diagram + methodology + justification |
 
 ---
 
 ## Build & Deployment
 
-### Development Build
 ```bash
+# Production build
 npm run build
-```
 
-### Preview Production Build
-```bash
+# Preview build
 npm run preview
 ```
 
-### Deploy
+**Deployment Platforms:** Vercel (recommended) • Netlify • Cloudflare Pages • Any static SPA host
 
-The application is optimized for deployment on:
-- **Vercel** (recommended)
-- **Netlify**
-- **CloudflarePages**
-- Any static host supporting SPA routing
+**Environment Setup (Vercel):**
+1. Connect GitHub repository
+2. Settings → Environment Variables
+3. Add `VITE_GEMINI_API_KEY` with your API key
+4. Deploy automatically on push
 
 ---
 
@@ -187,30 +147,31 @@ Result: A precise, scholarly aesthetic distinctly different from generic SaaS ap
 
 ---
 
-## Project Structure
+## Architecture
 
 ```
-research-consultant-5/
-├── components/              # React components
-│   ├── Header.tsx
+src/
+├── components/              # React UI components
+│   ├── Header.tsx          # Navigation & branding
 │   ├── StepInput.tsx       # Research input form
-│   ├── StepTheories.tsx    # Theory selection & comparison
-│   ├── StepHypothesesPicking.tsx
-│   ├── StepReport.tsx      # Final research report
-│   ├── Loading.tsx
+│   ├── StepTheories.tsx    # Theory discovery & comparison
+│   ├── StepHypothesesPicking.tsx # Hypothesis selection
+│   ├── StepReport.tsx      # Final report generation
+│   ├── Loading.tsx         # Loading state
 │   ├── Mermaid.tsx         # Diagram rendering
-│   └── Tooltip.tsx
-├── services/               # API integrations
+│   └── Tooltip.tsx         # Helper tooltips
+├── services/
 │   └── gemini.ts          # Google Gemini API client
-├── utils/                 # Utilities
-│   └── translations.ts    # Multi-language support
+├── utils/
+│   └── translations.ts    # Bilingual support (AR/EN)
 ├── App.tsx                # Main app component
-├── index.tsx              # React entry point
-├── index.html             # HTML template
+├── index.tsx              # React DOM entry
+├── types.ts               # TypeScript definitions
 ├── index.css              # Global styles
-├── tailwind.config.js     # Tailwind configuration
-├── tsconfig.json          # TypeScript configuration
-└── types.ts               # TypeScript types
+├── index.html             # HTML template
+├── tailwind.config.js     # Tailwind design tokens
+├── tsconfig.json          # TypeScript compiler
+└── vite.config.ts         # Vite bundler config
 ```
 
 ---
@@ -220,47 +181,40 @@ research-consultant-5/
 ### Environment Variables
 
 ```env
-# Required
-VITE_GEMINI_API_KEY=your_gemini_api_key
-
-# Optional
-VITE_API_ENDPOINT=https://generativelanguage.googleapis.com
+VITE_GEMINI_API_KEY=your_api_key_from_ai.google.dev
 ```
 
-### Tailwind Design Tokens
+### Design System
 
-The custom design system includes:
-- **Colors**: `gold`, `ink`, `surface`, primary variants
-- **Border Radius**: `card: 20px`, `sheet: 28px`
-- **Shadows**: `shadow-card`, `shadow-card-hover`
-- **Typography**: `font-display` for English headings
+Built on Impeccable design principles with custom Tailwind tokens:
+
+| Category | Details |
+|----------|---------|
+| **Colors** | Deep navy (`#1E3A8A`) + warm gold (`#B5851B`) + off-white surface |
+| **Typography** | Instrument Serif (headings) + Cairo (Arabic/body) |
+| **Spacing** | 4-point grid system, consistent hierarchy |
+| **Radius** | Card: 20px, Sheet: 28px |
+| **Motion** | Purposeful animations, respects `prefers-reduced-motion` |
 
 ---
 
 ## Accessibility
 
-- ✅ WCAG 2.1 Level AA compliant
-- ✅ `prefers-reduced-motion` support
-- ✅ Semantic HTML structure
-- ✅ Keyboard navigation support
-- ✅ High contrast color ratios
-- ✅ Screen reader optimized
+✅ **WCAG 2.1 Level AA** • ✅ Reduced-motion support • ✅ Semantic HTML • ✅ Keyboard navigation • ✅ High contrast • ✅ Screen reader optimized
 
 ---
 
 ## Internationalization
 
-The application supports:
-- **Arabic** — Full RTL layout, Cairo font
-- **English** — LTR layout, Instrument Serif headings
+**Supported:** Arabic (RTL, Cairo font) • English (LTR, Instrument Serif)
 
-Add new languages by extending `utils/translations.ts`:
+To add a language, extend `utils/translations.ts`:
 
 ```typescript
 export const translations: Record<Language, Translations> = {
   ar: { /* Arabic */ },
   en: { /* English */ },
-  // fr: { /* French */ },
+  fr: { /* Your language */ },
 };
 ```
 
@@ -268,59 +222,66 @@ export const translations: Record<Language, Translations> = {
 
 ## Performance
 
-- **Build Size**: ~150KB (gzipped) with all dependencies
-- **Time to Interactive**: < 2s on 4G networks
-- **Lighthouse Score**: 90+ (Performance, Accessibility, Best Practices, SEO)
-- **API Response Time**: ~3-8s (depends on theory complexity)
+| Metric | Target |
+|--------|--------|
+| Build Size | ~150KB (gzipped) |
+| Time to Interactive | < 2s (4G networks) |
+| Lighthouse Score | 90+ (all categories) |
+| API Response | 3-8s (theory generation) |
 
 ---
 
 ## Contributing
 
-We welcome contributions from developers and researchers. To contribute:
+We welcome contributions! To get started:
 
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/your-feature`
-3. **Commit** changes: `git commit -m "Add your feature"`
-4. **Push** to branch: `git push origin feature/your-feature`
-5. **Submit** a Pull Request
+```bash
+# Fork → Clone → Branch
+git checkout -b feature/your-feature
 
-### Development Guidelines
-- Use TypeScript for type safety
-- Follow the existing component structure
-- Maintain 2-space indentation
-- Test on both Arabic and English interfaces
-- Ensure accessibility compliance
+# Make changes following these guidelines:
+# - Use TypeScript for type safety
+# - Follow existing component patterns
+# - Test on Arabic & English interfaces
+# - Ensure WCAG 2.1 AA compliance
+# - Use 2-space indentation
+
+# Commit & push
+git commit -m "Add feature description"
+git push origin feature/your-feature
+```
+
+Then [open a Pull Request](https://github.com/mShareeda/research-consultant-5/pulls).
 
 ---
 
-## Support & Documentation
+## Support
 
-- **Issues**: [GitHub Issues](https://github.com/mShareeda/research-consultant-5/issues)
-- **Email**: m.shareeda@gmail.com
-- **Documentation**: See [CLAUDE.md](CLAUDE.md) for development setup
+- 🐛 [Report Issues](https://github.com/mShareeda/research-consultant-5/issues)
+- 📧 Email: m.shareeda@gmail.com
+- 📖 [Dev Setup](CLAUDE.md)
 
 ---
 
 ## License
 
-This project is licensed under the **Apache License 2.0** — see [LICENSE](LICENSE) file for details.
+[Apache License 2.0](LICENSE) — Free for personal and commercial use.
 
 ---
 
 ## Acknowledgments
 
-- [Anthropic](https://anthropic.com) — Frontend design principles foundation
-- [Google Gemini](https://gemini.google.com) — AI backbone
-- [React](https://react.dev), [Vite](https://vitejs.dev), [Tailwind CSS](https://tailwindcss.com) — Modern web stack
-- [Lucide Icons](https://lucide.dev) — Icon library
+**Design & Principles** • [Anthropic](https://anthropic.com) — Impeccable design system  
+**AI Backbone** • [Google Gemini API](https://ai.google.dev/)  
+**Web Stack** • [React](https://react.dev) • [Vite](https://vitejs.dev) • [Tailwind CSS](https://tailwindcss.com)  
+**Icons** • [Lucide React](https://lucide.dev)
 
 ---
 
 <div align="center">
 
-**Made with precision by** [mShareeda](https://github.com/mShareeda) **| 2025**
+**Crafted with precision** • [mShareeda](https://github.com/mShareeda) • 2025
 
-[⬆ Back to top](#)
+[⬆ back to top](#smart-theory-alignment-system)
 
 </div>
