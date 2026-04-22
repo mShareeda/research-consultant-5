@@ -4,7 +4,7 @@ import { Language } from "../types";
 export const translations = {
   ar: {
     appTitle: "نظام مواءمة النظرية الذكي",
-    beta: "BETA v0.04",
+    beta: "BETA 0.05",
     loadingProcessing: "جاري المعالجة الذكية",
     loadingWait: "يرجى الانتظار، يقوم النظام الآن بمعالجة البيانات واستدعاء النماذج العلمية...",
     loadingProgress: "التقدم",
@@ -84,8 +84,8 @@ export const translations = {
 
     // Step Report
     reportTitle: "التقرير النهائي للمواءمة",
-    exportWord: "تصدير Word",
     exportPDF: "تصدير PDF",
+    exportingPDF: "جاري التصدير...",
     newSearch: "بحث جديد",
     backToHypBtn: "تعديل الفرضيات",
     adoptedTheoryLabel: "النظريات المعتمدة:",
@@ -114,7 +114,7 @@ export const translations = {
   },
   en: {
     appTitle: "Smart Theory Alignment System",
-    beta: "BETA v0.04",
+    beta: "BETA 0.05",
     loadingProcessing: "Smart Processing",
     loadingWait: "Please wait, the system is processing data and retrieving scientific models...",
     loadingProgress: "Progress",
@@ -194,8 +194,8 @@ export const translations = {
 
     // Step Report
     reportTitle: "Final Alignment Report",
-    exportWord: "Export to Word",
     exportPDF: "Export PDF",
+    exportingPDF: "Exporting...",
     newSearch: "New Search",
     backToHypBtn: "Edit Hypotheses",
     adoptedTheoryLabel: "Adopted Theories:",

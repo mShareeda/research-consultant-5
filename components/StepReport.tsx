@@ -1,9 +1,10 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Report, Theory, AcademicLevel, Language, ComparisonResult } from "../types";
-import { RefreshCw, FileText, Layers, Calendar, Lightbulb, GraduationCap, AlertTriangle, Scale, Zap, Target, Link, BookOpen, Quote, ArrowLeft, ArrowRight, Copy, CheckCircle } from "lucide-react";
+import { RefreshCw, FileText, Layers, Calendar, Lightbulb, GraduationCap, AlertTriangle, Scale, Zap, Target, Link, BookOpen, Quote, ArrowLeft, ArrowRight, Copy, CheckCircle, Download } from "lucide-react";
 import { translations } from "../utils/translations";
 import Mermaid from "./Mermaid";
+import html2pdf from "html2pdf.js";
 
 const safeText = (content: any): string => {
   if (typeof content === 'string') return content;
@@ -31,11 +32,13 @@ interface StepReportProps {
   lang: Language;
 }
 
-const StepReport: React.FC<StepReportProps> = ({ 
-    report, theories, theoriesHypotheses, selectedHypotheses, title, level, comparisonResult, onReset, onBack, lang 
+const StepReport: React.FC<StepReportProps> = ({
+    report, theories, theoriesHypotheses, selectedHypotheses, title, level, comparisonResult, onReset, onBack, lang
 }) => {
   const t = translations[lang];
   const [copying, setCopying] = useState(false);
+  const [exportingPDF, setExportingPDF] = useState(false);
+  const reportRef = useRef<HTMLDivElement>(null);
 
   const levelLabels: Record<string, string> = {
     [AcademicLevel.Bachelor]: t.levelBachelor,
@@ -74,6 +77,26 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
     }
   };
 
+  const handleExportPDF = async () => {
+    if (!reportRef.current) return;
+    setExportingPDF(true);
+    try {
+      const element = reportRef.current;
+      const opt = {
+        margin: 10,
+        filename: `${title.substring(0, 30).replace(/\s+/g, '_')}_alignment_report.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+      };
+      html2pdf().set(opt).from(element).save();
+      setTimeout(() => setExportingPDF(false), 1000);
+    } catch (err) {
+      console.error('PDF export failed:', err);
+      setExportingPDF(false);
+    }
+  };
+
   return (
     <div className="w-full max-w-6xl mx-auto animate-in fade-in duration-700 pb-10 px-2 sm:px-0">
       {/* Action Bar */}
@@ -101,6 +124,15 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
             <span className="hidden sm:inline">{copying ? t.copiedLabel : t.copyTextLabel}</span>
           </button>
 
+          <button
+            onClick={handleExportPDF}
+            disabled={exportingPDF}
+            className="flex-shrink-0 px-3 md:px-4 py-2.5 md:py-3 text-slate-600 hover:text-indigo-600 disabled:text-slate-400 rounded-xl flex items-center gap-1.5 font-bold transition-all text-xs md:text-sm border border-slate-100 bg-white hover:bg-slate-50 disabled:hover:bg-white"
+          >
+            {exportingPDF ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Download className="w-3.5 h-3.5" />}
+            <span className="hidden sm:inline">{exportingPDF ? t.exportingPDF : t.exportPDF}</span>
+          </button>
+
           <button onClick={onReset} className="flex-shrink-0 px-4 md:px-6 py-2.5 md:py-3 bg-indigo-600 text-white border border-indigo-700 rounded-xl flex items-center gap-1.5 font-bold shadow-md transition-all hover:bg-indigo-700 active:scale-95 text-xs md:text-sm">
             <RefreshCw className="w-3.5 h-3.5" />
             {t.newSearch}
@@ -109,7 +141,7 @@ ${report.study_hypotheses.map((h, i) => `${i + 1}. ${h.text}`).join('\n')}
       </div>
 
       <div className="rounded-3xl md:rounded-[2.5rem] shadow-xl border border-slate-200 bg-white relative overflow-hidden">
-         <div id="report-content" className="p-6 md:p-16 relative bg-white">
+         <div ref={reportRef} id="report-content" className="p-6 md:p-16 relative bg-white">
             <div className="absolute top-0 left-0 w-full h-2 md:h-3 bg-gradient-to-r from-indigo-600 via-blue-500 to-indigo-600 no-print"></div>
             
             <div className="relative z-10 mb-8 md:mb-12 border-b-2 border-slate-50 md:border-slate-100 pb-8 md:pb-10">
